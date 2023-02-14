@@ -1,14 +1,31 @@
-<p align="center"><img src="https://cariilmu.co.id/images/logo-cariilmu-2021.png" width="100%"></p>
+<p align="center"><img src="https://i.postimg.cc/K8dt4MgY/logo-cariilmu-co-id.jpg" width="100%"></p>
+
+## About this Project
+
+This project is created for intership test in Cariilmu.co.id as a Backend Developer (Node JS).
+
+## Desain Database
+
+[![image.png](https://i.postimg.cc/6qtmgQV9/image.png)](https://postimg.cc/r0ZjtMYb)
+
+## Depedencies
+
+- [Express JS](https://expressjs.com/).
+- [Knex](https://knexjs.org/).
+- [JSON Web Token](https://www.npmjs.com/package/@types/jsonwebtoken).
+- [My SQL](https://www.npmjs.com/package/mysql).
+- [Bcrypt](https://www.npmjs.com/package/bcrypt).
+- [Cookie Parser](https://www.npmjs.com/package/cookie-parser).
+- [Body Parser](https://www.npmjs.com/package/body-parser).
+- [Cors](https://www.npmjs.com/package/cors).
+- [DotENV](https://www.npmjs.com/package/dotenv).
+- [Express Validator](https://express-validator.github.io/docs).
+- [Morgan](https://www.npmjs.com/package/morgan).
+- [Nodemon](https://www.npmjs.com/package/nodemon).
 
 # Tutorial Github
 
-## Forking dari Repository Utama
-
-1. Buka Halaman [Repo](https://github.com/milhamap/Cariilmu.co.id-challenge.git)
-
-2. Tekan Icon Fork
-
-## Mengcloning Repository Hasil Forking
+## How to Cloning Repository
 
 1. Buka Halaman Github Anda
  
@@ -28,14 +45,14 @@ git clone https://github.com/milhamap/Cariilmu.co.id-challenge.git
 cd Cariilmu.co.id challenge
 ```
 
-# Tutorial Penggunaan & Konfigurasi Laravel
+# How to Use and Configuration Node JS Express
 
 1. Install Node Package Manager Terlebih Dahulu <br>
    [Download disini](https://nodejs.org/en/download/)
-2. Initialitation NPM Terlebih Dahulu
+2. Install all javascript dependecies Terlebih Dahulu
 
 ```
-npm init --y
+$ npm install
 ```
 
 3. Copy isi file .env.example
@@ -48,11 +65,16 @@ cp .env.example .env
 6. Lakukan Migrasi Database
 
 ```
-knex migrate:latest
+$ knex migrate:latest
 ```
 
-7. Jalankan aplikasi
+## How to Run
 
+1. Run server using `npm` command below
+```console
+$ npm run start
 ```
-npm run start
-```
+
+## API Documentation
+
+You can access this project API documentation [here]()
