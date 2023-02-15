@@ -29,19 +29,15 @@ Credits by Muhammad Ilham Adi Pratama
 
 ## How to Cloning Repository
 
-1. Buka Halaman Github Anda
- 
-2. Pilih Repository Hasil Forking
+1. Pada Komputer Anda Buka Console / Command Promt
 
-3. Pada Komputer Anda Buka Console / Command Promt
-
-4. Ketikan Perintah Berikut
+2. Ketikan Perintah Berikut
 
 ```
 git clone https://github.com/milhamap/Cariilmu.co.id-challenge.git
 ```
 
-4. Masuk Ke Dalam Folder Hasil Clone
+3. Masuk Ke Dalam Folder Hasil Clone
 
 ```
 cd Cariilmu.co.id-challenge
