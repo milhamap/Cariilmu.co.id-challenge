@@ -44,7 +44,7 @@ git clone https://github.com/milhamap/Cariilmu.co.id-challenge.git
 4. Masuk Ke Dalam Folder Hasil Clone
 
 ```
-cd Cariilmu.co.id challenge
+cd Cariilmu.co.id-challenge
 ```
 
 # How to Use and Configuration Node JS Express
