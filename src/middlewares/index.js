@@ -21,8 +21,8 @@ module.exports = {
         if (token == null) return res.sendStatus(401)
         jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, enc) => {
             if (err) return res.sendStatus(403)
-            if (user.role !== 'admin') return res.status(403).json({message: `You aren't admin`})
             user = enc
+            if (user.role !== 'admin') return res.status(403).json({message: `You aren't admin`})
             next()
         })
     },
@@ -34,8 +34,8 @@ module.exports = {
         if (token == null) return res.sendStatus(401)
         jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, enc) => {
             if (err) return res.sendStatus(403)
-            if (user.role !== 'user') return res.status(403).json({message: `You aren't user`})
             user = enc
+            if (user.role !== 'user') return res.status(403).json({message: `You aren't user`})
             next()
         })
     }

@@ -9,6 +9,7 @@ module.exports = {
             await check('course_id').isInt().notEmpty().run(req)
             const result = validationResult(req)
             if (!result.isEmpty()) return res.status(400).json({ errors: result.array() })
+            if (await knex('user_courses').where('user_id', user_id).where('course_id', course_id).first()) return res.status(400).json({ message: 'User Course already exists' })
             const uc = await knex('user_courses').insert({
                 user_id,
                 course_id
@@ -61,10 +62,19 @@ module.exports = {
         })
     },
     getUserCourse: async (req, res) => {
-        const data = await knex({uc: 'user_courses'}).join({u: 'users'}, 'uc.user_id', 'u.id').join({c: 'courses'}, 'uc.course_id', 'c.id').select('uc.id', 'u.name as user', 'uc.user_id', 'c.title as course', 'uc.course_id').where('uc.user_id', user.id).first()
+        const data = await knex({uc: 'user_courses'}).join({u: 'users'}, 'uc.user_id', 'u.id').join({c: 'courses'}, 'uc.course_id', 'c.id').select('uc.id', 'u.name as user', 'uc.user_id', 'c.title as course', 'uc.course_id').where('uc.user_id', user.id)
         if (data.length == 0) return res.status(400).json({ message: 'User Course not found' })
         res.status(200).json({
             message: 'Success Get User Course',
+            data
+        })
+    },
+    getDetailUserCourse: async (req, res) => {
+        const id = req.params.id
+        const data = await knex({uc: 'user_courses'}).join({u: 'users'}, 'uc.user_id', 'u.id').join({c: 'courses'}, 'uc.course_id', 'c.id').select('uc.id', 'u.name as user', 'uc.user_id', 'c.title as course', 'uc.course_id').where('uc.id', id)
+        if (data.length == 0) return res.status(400).json({ message: 'User Course not found' })
+        res.status(200).json({
+            message: 'Success Get Detail User Course',
             data
         })
     },

@@ -1,5 +1,8 @@
 const knex = require('../../databases')
+const { createUserToken, createRefreshToken } = require('../../helpers/tokens')
 const { check, validationResult } = require('express-validator')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 module.exports = {
     createUser: async (req, res) => {
@@ -12,7 +15,7 @@ module.exports = {
             const result = validationResult(req)
             if (!result.isEmpty()) return res.status(400).json({ errors: result.array() })
             if (password !== confirmPassword) return res.status(400).json({message: 'Email or Password not match'})
-            if(await knex('admin').where('email', email).then(data => data.length) !== 0) return res.status(400).json({message: 'Email or Password not match'})
+            if(await knex('users').where('email', email).then(data => data.length) !== 0) return res.status(400).json({message: 'Email or Password not match'})
             const salt = await bcrypt.genSalt()
             const hashedPassword = await bcrypt.hash(password, salt)
             const data = await knex('users').insert({
@@ -101,11 +104,11 @@ module.exports = {
         res.status(200).json({message: 'Logout Success'})
     },
     getUser: async (req, res) => {
-        const admin = await knex('admin').where('id', user.id).first()
-        if (!admin) return res.status(400).json({message: "Data Admin not found"})
+        const users = await knex('users').where('id', user.id).first()
+        if (!users) return res.status(400).json({message: "Data User not found"})
         res.status(200).json({
-            message: 'Seccess Get Admin User',
-            admin
+            message: 'Seccess Get User',
+            users
         })
     },
     getsUser: async (req, res) => {
@@ -166,6 +169,7 @@ module.exports = {
     deleteUser: async (req, res) => {
         try {
             const id = req.params.id
+            if (await knex('user_courses').where('user_id', id).first()) await knex('user_courses').where('user_id', id).del()
             const u = await knex('users').where('id', id).first()
             if (!u) return res.status(400).json({message: 'User not found'})
             await knex('users').where('id', id).del()

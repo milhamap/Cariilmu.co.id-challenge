@@ -71,6 +71,12 @@ module.exports = {
     },
     deleteCourse: async (req, res) => {
         const id = req.params.id
+        const user_course = await knex('user_courses').where('course_id', id)
+        if (user_course) {
+            user_course.map(async (uc) => {
+                await knex('user_courses').where('id', uc.id).del()
+            })
+        }
         const data = await knex('courses').where('id', id).del()
         if (data == 0) return res.status(400).json({message: 'Course not found'})
         res.status(200).json({

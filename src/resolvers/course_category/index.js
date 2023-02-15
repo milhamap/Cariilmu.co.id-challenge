@@ -1,5 +1,6 @@
 const knex = require('../../databases')
-const { check, validationResult } = require('express-validator')
+const { check, validationResult } = require('express-validator');
+const { promise } = require('bcrypt/promises');
 
 module.exports = {
     createCourseCategory: async (req, res) => {
@@ -66,6 +67,18 @@ module.exports = {
     },
     deleteCourseCategory: async (req, res) => {
         const id = req.params.id
+        const courses = await knex('courses').where('course_category_id', id)
+        console.log(courses)
+        if (courses) {
+            Promise.all(courses.map(async (course) => {
+                if (await knex('user_courses').where('course_id', course.id)) {
+                    console.log(course.id)
+                    await knex('user_courses').where('course_id', course.id).del()
+                }
+            }))
+            console.log('Hello')
+            await knex('courses').where('course_category_id', id).del() 
+        } 
         const data = await knex('course_categories').where('id', id).del()
         if (data == 0) return res.status(400).json({message: 'Course Category not found'})
         res.status(200).json({

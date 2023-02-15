@@ -4,6 +4,8 @@
 
 This project is created for intership test in Cariilmu.co.id as a Backend Developer (Node JS).
 
+Credits by Muhammad Ilham Adi Pratama
+
 ## Desain Database
 
 [![image.png](https://i.postimg.cc/6qtmgQV9/image.png)](https://postimg.cc/r0ZjtMYb)
@@ -77,4 +79,4 @@ $ npm run start
 
 ## API Documentation
 
-You can access this project API documentation [here]()
+You can access this project API documentation [here](https://documenter.getpostman.com/view/21604420/2s93CEvGMT)
